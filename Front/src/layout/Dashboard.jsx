@@ -34,7 +34,7 @@ const Dashboard = () => {
                     </li>
 
                     <li className="text-center">
-                        <Link to='/dashboard/reservas' className={`${urlActual === '/dashboard/reservas' ? 'text-slate-100 bg-gray-900 px-3 py-2 rounded-md text-center' : 'text-slate-600'} text-xl block mt-2 hover:text-slate-600`}>Tickets</Link>
+                        <Link to='/dashboard/tickets' className={`${urlActual === '/dashboard/tickets' ? 'text-slate-100 bg-gray-900 px-3 py-2 rounded-md text-center' : 'text-slate-600'} text-xl block mt-2 hover:text-slate-600`}>Tickets</Link>
                     </li>
                 </ul>
 

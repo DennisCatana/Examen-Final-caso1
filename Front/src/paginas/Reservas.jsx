@@ -7,17 +7,17 @@ const Reservas = () => {
     const navigate = useNavigate();
     return (
         <div>
-            <h1 className='font-black text-4xl text-gray-500'>Reservas</h1>
+            <h1 className='font-black text-4xl text-gray-500'>TICKETS</h1>
             <hr className='my-4' />
             <div style={{ width: 'auto', margin: 'auto', display: 'flex', padding: '0.5em' }}>
 
-                <p className='mb-8'>Este módulo muestra las reservas</p>
+                <p className='mb-8'>Este módulo muestra los tickets</p>
 
                 <input
                     type="submit"
                     className='bg-gray-600 w-auto p-1  text-slate-300 uppercase font-bold rounded-lg 
                      hover:bg-gray-900 cursor-pointer transition-all ml-auto'
-                    onClick={() => navigate(`/dashboard/agregarReserva`)}
+                    onClick={() => navigate(`/dashboard/agregartickets`)}
                     value='Agregar'
                 />
 

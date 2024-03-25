@@ -54,10 +54,10 @@ function App() {
                     <Route path='visualizarTecnico/:id' element={<Visualizar/>} />       
                     <Route path='actualizarTecnico/:id'element={<Actualizar />} />
 
-                    <Route path='reservas' element={<Reservas />} />
-                    <Route path='agregarReserva' element={<FormularioRs  />} /> 
-                    <Route path='visualizarReserva/:id' element={<VisualizarRs/>} />  
-                    <Route path='actualizarReserva/:id' element={<ActualizarRs/>} />  
+                    <Route path='tickets' element={<Reservas />} />
+                    <Route path='agregartickets' element={<FormularioRs  />} /> 
+                    <Route path='visualizartickets/:id' element={<VisualizarRs/>} />  
+                    <Route path='actualizartickets/:id' element={<ActualizarRs/>} />  
 
                    
                   </Route>
