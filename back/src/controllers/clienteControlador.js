@@ -16,7 +16,7 @@ const detalleCliente = async(req,res)=>{
     res.status(200).json(Cliente)
 }
 const registrarCliente = async (req, res) => {
-    const { cedula, nombre, apellido, ciudad, email, direccion, telefono, fechaNacimiento } = req.body;
+    const { cedula, nombre, apellido, ciudad, email, direccion, telefono, fechaNacimiento,dependencia } = req.body;
 
     try {
         // Verificar si la cédula ya existe en la base de datos
@@ -26,7 +26,7 @@ const registrarCliente = async (req, res) => {
         }
 
         // Si la cédula no está registrada, crear un nuevo cliente
-        const nuevoCliente = new clientes({ cedula, nombre, apellido, ciudad, email, direccion, telefono, fechaNacimiento });
+        const nuevoCliente = new clientes({ cedula, nombre, apellido, ciudad, email, direccion, telefono, fechaNacimiento,dependencia });
         await nuevoCliente.save();
         res.status(201).json({ mensaje: "Cliente registrado exitosamente", cliente: nuevoCliente });
     } catch (error) {
