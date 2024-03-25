@@ -79,8 +79,11 @@ const TablaReservas = () => {
                                 <td>{tickets.descripcion}</td>
                                 <td>{`${tickets.idCliente._id}`}</td>
                                 <td>{`${tickets.idCliente.nombre} ${tickets.idCliente.apellido}`}</td>
+                                {/*
                                 <td>{`${tickets.idtecnico._id}`}</td>
                                 <td>{`${tickets.idtecnico.nombre} `}</td>
+                                */}
+                                
                                 {/*
                                 
                                 */}

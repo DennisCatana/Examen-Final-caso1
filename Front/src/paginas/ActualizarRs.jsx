@@ -9,14 +9,14 @@ import { FormularioRs } from '../componets/Perfil/FormularioRs';
 
 const ActualizarRs = () => {
     const { id } = useParams()
-    const [reserva, setReserva] = useState({})
+    const [reserva, setTicket] = useState({})
     const [mensaje, setMensaje] = useState({})
 
     useEffect(() => {
-        const consultarReserva = async () => {
+        const consultarTicket = async () => {
             try {
                 const token = localStorage.getItem('token')
-                const url = `${import.meta.env.VITE_BACKEND_URL}/reservas/${id}`
+                const url = `${import.meta.env.VITE_BACKEND_URL}/tickets/${id}`
                 const options = {
                     headers: {
                         'Content-Type': 'application/json',
@@ -24,23 +24,23 @@ const ActualizarRs = () => {
                     }
                 }
                 const respuesta = await axios.get(url, options)
-                setReserva(respuesta.data)
+                setTicket(respuesta.data)
             } catch (error) {
                 setMensaje({ respuesta: error.response.data.msg, tipo: false })
             }
         }
-        consultarReserva()
+        consultarTicket()
     }, [])
 
     return (
         <div>
-            <h1 className='font-black text-4xl text-gray-500'>Actualizar Vehiculo</h1>
+            <h1 className='font-black text-4xl text-gray-500'>Actualizar </h1>
             <hr className='my-4' />
             <p className='mb-8'>Este módulo te permite actualizar </p>
             {
-                Object.keys(reserva).length != 0 ?
+                Object.keys(ticket).length != 0 ?
                     (
-                        <FormularioRs reserva={reserva}/>
+                        <FormularioRs ticket={ticket}/>
                     )
                     :
                     (
