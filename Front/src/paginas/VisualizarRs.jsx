@@ -5,7 +5,7 @@ import Mensaje from '../componets/Alertas/Mensaje';
 
 const Visualizar = () => {
     const { id } = useParams()
-    const [ticket, setTicket] = useState({})
+    const [tickets, setTicket] = useState({})
     const [mensaje, setMensaje] = useState({})
 
    
@@ -39,26 +39,26 @@ const Visualizar = () => {
             </div>
             <div>
                 {
-                    Object.keys(ticket).length != 0 ?
+                    Object.keys(tickets).length != 0 ?
                         (
                             <>
                             <div className='m-5 flex justify-between'>
                                 <div>
                                     <p className="text-md text-gray-00 mt-4">
                                         <span className="text-gray-600 uppercase font-bold">*Codigo: </span>
-                                        {ticket.codigo}
+                                        {tickets.codigo}
                                     </p>
                                     <p className="text-md text-gray-00 mt-4">
                                         <span className="text-gray-600 uppercase font-bold">* Descripción: </span>
-                                        {ticket.descripcion}
+                                        {tickets.descripcion}
                                     </p>
                                     <p className="text-md text-gray-00 mt-4">
                                         <span className="text-gray-600 uppercase font-bold">* IdCliente: </span>
-                                        {`${ticket.idCliente._id}`}                                       
+                                        {`${tickets.idCliente._id}`}                                       
                                     </p>
                                     <p className="text-md text-gray-00 mt-4">
                                         <span className="text-gray-600 uppercase font-bold">* IdTecnico: </span>
-                                        {`${ticket.idtecnico._id}`}                                       
+                                        {`${tickets.idtecnico._id}`}                                       
                                     </p>
                                     {/*
                                     <p className="text-md text-gray-00 mt-4">

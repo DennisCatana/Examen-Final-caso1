@@ -66,8 +66,7 @@ const TablaReservas = () => {
                             <th className='p-2' style={{ width: '200px' }}>Descripción</th>
                             <th className='p-2'>idCliente</th>
                             <th className='p-2'>Cliente</th>
-                            <th className='p-2'>idTecnico</th>
-                            <th className='p-2'>tecnico</th>
+                           
                             <th className='p-2'>Acciones</th>
                         </tr>
                     </thead>
@@ -79,9 +78,14 @@ const TablaReservas = () => {
                                 <td>{tickets.descripcion}</td>
                                 <td>{`${tickets.idCliente._id}`}</td>
                                 <td>{`${tickets.idCliente.nombre} ${tickets.idCliente.apellido}`}</td>
+                                
+                                
+
                                 {/*
                                 <td>{`${tickets.idtecnico._id}`}</td>
                                 <td>{`${tickets.idtecnico.nombre} `}</td>
+                                
+                                
                                 */}
                                 
                                 {/*
@@ -90,7 +94,7 @@ const TablaReservas = () => {
                                 
                                 <td className='py-2 text-center'>
                                     <MdNoteAdd className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2"  onClick={() => navigate(`/dashboard/visualizartickets/${tickets._id}`)}/>
-                                    <MdInfo className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2"  onClick={() => navigate(`/dashboard/actualizartickets/${tickets._id}`)}  /> 
+                                    <MdInfo className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2"    /> 
                                     <MdDeleteForever className="h-7 w-7 text-red-900 cursor-pointer inline-block" onClick={() => handleDelete(tickets._id)} />
                                 </td>
                             </tr>
