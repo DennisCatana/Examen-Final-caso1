@@ -45,7 +45,12 @@ const actualizartiket = async (req, res) => {
     res.status(200).json({msg:"Actualización exitosa de la cita"});
 }
 
-
+const detalletikets = async (req,res)=>{
+    const {id} = req.params
+    if( !mongoose.Types.ObjectId.isValid(id) ) return res.status(404).json({msg:`Lo sentimos, no existe el tiket ${id}`});
+    const Tiket = await tikets.findById(id).select("-createdAt -updatedAt -__v")
+    res.status(200).json(Tiket)
+}
 // Método para eliminar una cita por su ID
 const eliminartikets = async (req, res) => {
     const { id } = req.params;
@@ -66,6 +71,7 @@ const eliminartikets = async (req, res) => {
 
 export {
     listarTikets,
+    detalletikets,
     registrartiket,
     actualizartiket,
     eliminartikets

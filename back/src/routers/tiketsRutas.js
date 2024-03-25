@@ -5,6 +5,7 @@ import verificarAutenticacion from "../middlewares/autenticacion.js";
 
 import {
     listarTikets,
+    detalletikets,
     registrartiket,
     actualizartiket,
     eliminartikets
@@ -14,6 +15,7 @@ const router = Router()
 //listar 
 router.get('/tikets',verificarAutenticacion,listarTikets)
 //detalle
+router.get('/tikets/detalle/:id',verificarAutenticacion,detalletikets)
 //registra
 router.post('/tikets/registro',verificarAutenticacion,registrartiket)
 //actualizar 
