@@ -49,10 +49,10 @@ function App() {
                     <Route path='visualizarCliente/:id' element={<VisualizarCl />} /> 
                     <Route path='actualizarCliente/:id' element={<ActualizarCl />} />
 
-                    <Route path='vehiculos' element={<Vehiculos />} />
-                    <Route path='agregarVehiculo' element={<FormularioVh />} />  
-                    <Route path='visualizarVehiculos/:id' element={<Visualizar/>} />       
-                    <Route path='actualizarVehiculo/:id'element={<Actualizar />} />
+                    <Route path='tecnicos' element={<Vehiculos />} />
+                    <Route path='agregarTecnico' element={<FormularioVh />} />  
+                    <Route path='visualizarTecnico/:id' element={<Visualizar/>} />       
+                    <Route path='actualizarTecnico/:id'element={<Actualizar />} />
 
                     <Route path='reservas' element={<Reservas />} />
                     <Route path='agregarReserva' element={<FormularioRs  />} /> 

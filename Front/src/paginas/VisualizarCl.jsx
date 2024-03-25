@@ -80,14 +80,16 @@ const VisualizarCl = () => {
                                         <span className="text-gray-600 uppercase font-bold">* Fecha Naciemiento: </span>
                                         {formatearFecha(cliente.fechaNacimiento)}
                                     </p>
+                                    <p className="text-md text-gray-00 mt-4">
+                                        <span className="text-gray-600 uppercase font-bold">* dependencia: </span>
+                                        {(cliente.dependencia)}
+                                    </p>
                                    
                                 </div>
-                                <div>
-                                    <img src="https://cdn-icons-png.flaticon.com/512/2138/2138440.png" alt="dogandcat" className='h-80 w-80' />
-                                </div>
+                                
                             </div>
                             <hr className='my-4' />
-                            <p className='mb-8'>Este submódulo te permite visualizar los tratamientos del paciente</p>
+                            
                             </>
                         )
                         :

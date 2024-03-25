@@ -8,14 +8,14 @@ import { FormularioVh } from '../componets/Perfil/FormularioVh';
 
 const Actualizar = () => {
     const { id } = useParams()
-    const [vehiculo, setVehiculo] = useState({})
+    const [tecnico, setTecnico] = useState({})
     const [mensaje, setMensaje] = useState({})
 
     useEffect(() => {
-        const consultarVehiculo = async () => {
+        const consultarTecnico = async () => {
             try {
                 const token = localStorage.getItem('token')
-                const url = `${import.meta.env.VITE_BACKEND_URL}/vehiculos/${id}`
+                const url = `${import.meta.env.VITE_BACKEND_URL}/tecnicos/${id}`
                 const options = {
                     headers: {
                         'Content-Type': 'application/json',
@@ -23,23 +23,23 @@ const Actualizar = () => {
                     }
                 }
                 const respuesta = await axios.get(url, options)
-                setVehiculo(respuesta.data)
+                setTecnico(respuesta.data)
             } catch (error) {
                 setMensaje({ respuesta: error.response.data.msg, tipo: false })
             }
         }
-        consultarVehiculo()
+        consultarTecnico()
     }, [])
 
     return (
         <div>
-            <h1 className='font-black text-4xl text-gray-500'>Actualizar Vehiculo</h1>
+            <h1 className='font-black text-4xl text-gray-500'>Actualizar tecnico</h1>
             <hr className='my-4' />
-            <p className='mb-8'>Este módulo te permite actualizar los datos de un Vehiculo</p>
+            <p className='mb-8'>Este módulo te permite actualizar los datos de un tecnico</p>
             {
-                Object.keys(vehiculo).length != 0 ?
+                Object.keys(tecnico).length != 0 ?
                     (
-                        <FormularioVh vehiculo={vehiculo}/>
+                        <FormularioVh tecnico={tecnico}/>
                     )
                     :
                     (

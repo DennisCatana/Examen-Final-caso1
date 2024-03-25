@@ -8,12 +8,12 @@ import { useNavigate } from 'react-router-dom'
 
 const TablaVehiculos = () => {
     const navigate = useNavigate()
-    const [vehiculos, setVehiculos] = useState([])
+    const [tecnicos, setTecnicos] = useState([])
  
-    const listarVehiculos = async () => {
+    const listarTecnicos = async () => {
         try {
             const token = localStorage.getItem('token')
-            const url = `${import.meta.env.VITE_BACKEND_URL}/vehiculos`
+            const url = `${import.meta.env.VITE_BACKEND_URL}/tecnicos`
             const options = {
                 headers: {
                     'Content-Type': 'application/json',
@@ -21,22 +21,22 @@ const TablaVehiculos = () => {
                 }
             }
             const respuesta = await axios.get(url, options)
-            setVehiculos(respuesta.data, ...vehiculos)
+            setTecnicos(respuesta.data, ...tecnicos)
         } catch (error) {
             console.log(error);
         }
     }
 
     useEffect(() => {
-        listarVehiculos()
+        listarTecnicos()
     }, [])
 
     const handleDelete = async (id) => {
         try {
-            const confirmar = confirm("Vas a eliminar un vehiculo, ¿Estás seguro de realizar esta acción?")
+            const confirmar = confirm("Vas a eliminar un tecnico, ¿Estás seguro de realizar esta acción?")
             if (confirmar) {
                 const token = localStorage.getItem('token')
-                const url = `${import.meta.env.VITE_BACKEND_URL}/vehiculos/eliminar/${id}`
+                const url = `${import.meta.env.VITE_BACKEND_URL}/tecnicos/eliminar/${id}`
                 const headers= {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${token}`
@@ -45,7 +45,7 @@ const TablaVehiculos = () => {
                     salida:new Date().toString()
                 }
                 await axios.delete(url, {headers, data});
-                listarVehiculos()
+                listarTecnicos()
             }
         }
         catch (error) {
@@ -56,7 +56,7 @@ const TablaVehiculos = () => {
     return (
         <>
             {
-                vehiculos.length == 0
+                tecnicos.length == 0
                     ?
                     <Mensaje tipo={'active'}>{'No existen registros'}</Mensaje>
                     :
@@ -64,36 +64,33 @@ const TablaVehiculos = () => {
                         <thead className='bg-gray-800 text-slate-400'>
                             <tr>
                                 <th className='p-2'>N°</th>
-                                <th className='p-2'>Marca</th>
-                                <th className='p-2'>Modelo</th>
-                                <th className='p-2'>Año de Fabricación</th>
-                                <th className='p-2'>Placa</th>
-                                <th className='p-2'>Color</th>
-                                <th className='p-2'>Kilometraje</th>
-                                <th className='p-2'>Descripción</th>
+                                <th className='p-2'>Nombre</th>
+                                <th className='p-2'>Apellido</th>
+                                <th className='p-2'>Cedula</th>
+                                <th className='p-2'>Genero</th>
+                                <th className='p-2'>Telefono</th>
+                               
                                 <th className='p-2'>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                vehiculos.map((vehiculos, index) => (
-                                    <tr className="border-b hover:bg-gray-300 text-center" key={vehiculos._id}>
+                                tecnicos.map((tecnicos, index) => (
+                                    <tr className="border-b hover:bg-gray-300 text-center" key={tecnicos._id}>
                                         <td>{index + 1}</td>
-                                        <td>{vehiculos.marca}</td>
-                                        <td>{vehiculos.modelo}</td>
-                                        <td>{vehiculos.anioFabricacion}</td>
-                                        <td>{vehiculos.placa}</td>
-                                        <td>{vehiculos.color}</td>
-                                        <td>{vehiculos.kilometraje}</td>
-                                        <td>{vehiculos.descripcion}</td>
+                                        <td>{tecnicos.nombre}</td>
+                                        <td>{tecnicos.apellido}</td>
+                                        <td>{tecnicos.cedula}</td>
+                                        <td>{tecnicos.genero}</td>
+                                        <td>{tecnicos.telefono}</td>
                                         
                                         
                                         <td className='py-2 text-center'>
-                                            <MdNoteAdd className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2 " onClick={() => navigate(`/dashboard/visualizarVehiculos/${vehiculos._id}`)}/>
+                                            <MdNoteAdd className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2 " onClick={() => navigate(`/dashboard/visualizarTecnico/${tecnicos._id}`)}/>
 
-                                            <MdInfo className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2" onClick={() => navigate(`/dashboard/actualizarVehiculo/${vehiculos._id}`)}  />
+                                            <MdInfo className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2" onClick={() => navigate(`/dashboard/actualizarTecnico/${tecnicos._id}`)}  />
 
-                                            <MdDeleteForever className="h-7 w-7 text-red-900 cursor-pointer inline-block"  onClick={() => { handleDelete(vehiculos._id) }} />
+                                            <MdDeleteForever className="h-7 w-7 text-red-900 cursor-pointer inline-block"  onClick={() => { handleDelete(tecnicos._id) }} />
                                         </td>
                                     </tr>
                                 ))
