@@ -3,7 +3,7 @@ import verificarAutenticacion from '../middlewares/autenticacion.js';
 
 import {
     login,
-    perfil
+    perfil,
 }from "../controllers/usuarioControlador.js";
 
 const router = Router()

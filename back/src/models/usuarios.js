@@ -2,7 +2,7 @@ import {Schema, model} from 'mongoose'
 
 
 
-const usuariosSchema = new Schema({
+const UsuarioSchema = new Schema({
     nombre: {
         type: String,
         required: true,
@@ -30,4 +30,4 @@ const usuariosSchema = new Schema({
 
 
 
-export default model('usuarios',usuariosSchema)
+export default model('Usuario',UsuarioSchema)

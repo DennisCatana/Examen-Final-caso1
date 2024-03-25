@@ -1,45 +1,45 @@
-import usuarios from "../models/usuarios.js";
+import Usuario from "../models/usuarios.js";
 
 import generarJWT from "../helpers/crearJWT.js"
 
-const login = async (req, res) => {
-    const { email, password } = req.body;
+// Método para el login
+const login = async(req,res)=>{
+    const {email,password} = req.body
 
-    if (Object.values(req.body).includes("")) {
-        return res.status(404).json({ msg: "Lo sentimos, debes llenar todos los campos" });
+    if (Object.values(req.body).includes("")) return res.status(404).json({msg:"Lo sentimos, debes llenar todos los campos"})
+    
+    const usuarioBDD = await Usuario.findOne({email}).select(" -__v -token -updatedAt -createdAt")
+        
+    if(!usuarioBDD) return res.status(404).json({msg:"Lo sentimos, el usuario no se encuentra registrado"})
+    
+    if (password !== usuarioBDD.password){
+        return res.status(400).json({ msg: "Contraseña Incorrecta"})
     }
+    
+    const token = generarJWT(usuarioBDD._id)
 
-    // Buscar usuario por email
-    const usuarioBD = await usuarios.findOne({ email });
-
-    if (!usuarioBD) {
-        // Si no se encuentra el usuario en la base de datos
-        return res.status(404).json({ message: "Usuario no registrado" });
-    }
-
-    // Verificar si la contraseña es correcta
-    if (usuarioBD.password !== password) {
-        return res.status(404).json({ message: "Contraseña incorrecta" });
-    }
-
-    // Generar el token JWT
-    const token = generarJWT(usuarioBD._id);
-
-    // Enviar respuesta al cliente con el token JWT y el mensaje de bienvenida
-    return res.status(200).json({ 
+    const {nombre,apellido,_id} = usuarioBDD
+    
+    res.status(200).json({
         token,
-        message: `¡Bienvenido, ${usuarioBD.nombre}!`
-    });
-
-
-   
-};
-
-const perfil=(req,res)=>{ 
-    res.status(200).json(req.usuarioBD)
+        nombre,
+        apellido,
+        _id,
+        email:usuarioBDD.email
+    })
 }
 
 
+// Método para mostrar el perfil 
+const perfil =(req,res)=>{
+    delete req.usuarioBDD.token
+    delete req.usuarioBDD.createdAt
+    delete req.usuarioBDD.updatedAt
+    delete req.usuarioBDD.__v
+    res.status(200).json(req.usuarioBDD)
+}
+
+// Exportar cada uno de los métodos
 export {
     login,
     perfil
