@@ -1,4 +1,5 @@
 // IMPORTAR EL MODELO
+import tikets from "../models/tikets.js";
 import Tiket from "../models/tikets.js";
 import mongoose from "mongoose";
 
@@ -28,14 +29,11 @@ const registrartiket = async (req, res) => {
 
 // Método para listar todas las citas
 const listarTikets = async (req, res) => {
-    const tikets = await tikets.find({estado:true})
-    .where('Tecnico').equals(req.tecnicodBDD)
-    .where('Cliente').equals(req.clienteBDD)
-    .select("-salida -createdAt -updatedAt -__v")
-    .populate('tecnico', '_id nombre apellido') //Respuesta
-    .populate('cliente', '_id nombre apellido')    // Respuesta 
-
-    res.status(200).json(citas)
+    const Tikets = await tikets.find()
+    .populate('idCliente', 'nombre apellido')
+    .populate('idtecnico', 'nombre apellido')
+    .select ("-createdAt -updatedAt -__v");
+    res.status(200).json(Tikets)
 }
 
 // Método para actualizar una cita por su ID

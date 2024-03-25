@@ -14,11 +14,11 @@ const tiketsSchema = new Schema({
     },
     idCliente:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'cliente'
+        ref:'clientes'
     },
     idtecnico:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'tecnico'
+        ref:'tecnicos'
     }
     
     
