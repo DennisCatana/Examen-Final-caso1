@@ -16,7 +16,6 @@ const detalleTecnicos = async (req,res)=>{
 const registrarTecnicos = async (req,res)=>{
         // Desestructurar el cuerpo de la solicitud
         const {nombre, apellido, cedula, fechaNacimiento, genero, ciudad, direccion, telefono,email } = req.body;
-
         try {
             // Verificar si la cédula ya existe en la base de datos
             const tecnicoExistente = await tecnicos.findOne({ cedula });

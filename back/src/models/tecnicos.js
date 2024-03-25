@@ -8,6 +8,11 @@ const tecnicosSchema = new Schema({
         type: String,
         required: true,
         trim: true,
+    },
+    apellido: {
+        type: String,
+        required: true,
+        trim: true,
     }, 
     cedula: {
         type: String,
