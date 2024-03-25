@@ -4,19 +4,20 @@ import axios from 'axios';
 import Mensaje from "../Alertas/Mensaje";
 
 
-export const FormularioVh = ({vehiculo}) => {
+export const FormularioVh = ({tecnico}) => {
 
     const navigate = useNavigate()
     const [mensaje, setMensaje] = useState({})
     const [form, setform] = useState({
-        marca: vehiculo?.marca?? "",
-        modelo:  vehiculo?.modelo?? "",
-        anioFabricacion:  vehiculo?.anioFabricacion?? "",
-        placa: vehiculo?.placa?? "",
-        color: vehiculo?.color?? "",
-        tipoVehiculo: vehiculo?.tipoVehiculo?? "",
-        kilometraje: vehiculo?.kilometraje?? "",
-        descripcion: vehiculo?.descripcion?? "",
+        nombre: tecnico?.nombre?? "",
+        apellido: tecnico?.apellido?? "",
+        cedula:  tecnico?.cedula?? "",
+        fechaNaciemiento: tecnico?.fechaNaciemiento?? "",
+        genero: tecnico?.genero?? "",
+        ciudad: tecnico?.ciudad?? "",
+        direccion: tecnico?.direccion?? "",
+        telefono: tecnico?.telefono?? "",
+        email: tecnico?.email?? "",
 })
     const handleChange = (e) => {
         setform({
@@ -27,9 +28,9 @@ export const FormularioVh = ({vehiculo}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (vehiculo?._id) {
+        if (tecnico?._id) {
             const token = localStorage.getItem('token')
-            const url = `${import.meta.env.VITE_BACKEND_URL}/vehiculos/actualizar/${vehiculo?._id}`
+            const url = `${import.meta.env.VITE_BACKEND_URL}/tecnicos/actualizar/${tecnico?._id}`
             const options = {
                 headers: {
                     method: 'PUT',
@@ -38,13 +39,13 @@ export const FormularioVh = ({vehiculo}) => {
                 }
             }
             await axios.put(url, form, options)
-            navigate('/dashboard/vehiculos')
+            navigate('/dashboard/tecnicos')
         }
         else {
        
         try {
             const token = localStorage.getItem('token')
-            const url = `${import.meta.env.VITE_BACKEND_URL}/vehiculos/registro`
+            const url = `${import.meta.env.VITE_BACKEND_URL}/tecnicos/registro`
             const options = {
                 headers: {
                     'Content-Type': 'application/json',
@@ -52,9 +53,9 @@ export const FormularioVh = ({vehiculo}) => {
                 }
             }
             await axios.post(url, form, options)
-            setMensaje({ respuesta: "vehiculo registrado", tipo: true })
+            setMensaje({ respuesta: "tecnico registrado", tipo: true })
             setTimeout(() => {
-                navigate('/dashboard/vehiculos');
+                navigate('/dashboard/tecnicos');
             }, 3000);
         } catch (error) {
             setMensaje({ respuesta: error.response.data.msg, tipo: false })
@@ -70,117 +71,131 @@ export const FormularioVh = ({vehiculo}) => {
         <form onSubmit={handleSubmit}>
             {Object.keys(mensaje).length > 0 && <Mensaje tipo={mensaje.tipo}>{mensaje.respuesta}</Mensaje>}
             <div>
-                <h1 className='font-black text-4xl text-gray-500'>Agregar Vehiculo</h1>
-                <hr className='my-4' />
+                
                 <label
-                    htmlFor='marca:'
-                    className='text-gray-700 uppercase font-bold text-sm'>Marca: </label>
+                    htmlFor='nombre:'
+                    className='text-gray-700 uppercase font-bold text-sm'>Nombre: </label>
                 <input
-                    id='marca'
+                    id='nombre'
                     type="text"
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='marca'
-                    name='marca'
-                    value={form.marca}
+                    placeholder='nombre'
+                    name='nombre'
+                    value={form.nombre}
                     onChange={handleChange}
                 />
             </div>
             <div>
                 <label
-                    htmlFor='modelo:'
-                    className='text-gray-700 uppercase font-bold text-sm'>Modelo: </label>
+                    htmlFor='apellido:'
+                    className='text-gray-700 uppercase font-bold text-sm'>Apellido: </label>
                 <input
-                    id='modelo'
+                    id='apellido'
                     type="text"
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='modelo'
-                    name='modelo'
-                    value={form.modelo}
+                    placeholder='apellido'
+                    name='apellido'
+                    value={form.apellido}
                     onChange={handleChange}
                 />
             </div>
             <div>
                 <label
                     htmlFor='anioFabricacion'
-                    className='text-gray-700 uppercase font-bold text-sm'>Anio de Fabricacion: </label>
+                    className='text-gray-700 uppercase font-bold text-sm'>Cedula: </label>
                 <input
-                    id='anioFabricacion'
-                    type="text"
+                    id='cedula'
+                    type="number"
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='anioFabricacion'
-                    name='anioFabricacion'
-                    value={form.anioFabricacion}
+                    placeholder='cedula'
+                    name='cedula'
+                    value={form.cedula}
                     onChange={handleChange}
                 />
             </div>
             <div>
-                <label
-                    htmlFor='placa'
-                    className='text-gray-700 uppercase font-bold text-sm'>Placa: </label>
+            <label
+                    htmlFor='fechaNacimiento:'
+                    className='text-gray-700 uppercase font-bold text-sm'>Fecha de Nacimiento: </label>
                 <input
-                    id='placa'
-                    type="text"
+                    id='fechaNacimiento'
+                    type="date"
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='placa'
-                    name='placa'
-                    value={form.placa}
+                    placeholder='Fecha de Nacimiento'
+                    name='fechaNacimiento'
+                    value={form.fechaNaciemiento}
                     onChange={handleChange}
                 />
             </div>
+            
             <div>
                 <label
-                    htmlFor='color'
-                    className='text-gray-700 uppercase font-bold text-sm'>Color: </label>
+                    htmlFor='genero'
+                    className='text-gray-700 uppercase font-bold text-sm'>Genero: </label>
                 <input
-                    id='color'
+                    id='genero'
                     type="text"
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='color'
-                    name='color'
-                    value={form.color}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label
-                    htmlFor='tipoVehiculo'
-                    className='text-gray-700 uppercase font-bold text-sm'>Tipo de Vehículo: </label>
-                <input
-                    id='tipoVehiculo'
-                    type="text"
-                    className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='tipoVehiculo '
-                    name='tipoVehiculo'
-                    value={form.tipoVehiculo}
+                    placeholder='genero '
+                    name='genero'
+                    value={form.genero}
                     onChange={handleChange}
                 />
             </div>
 
             <div>
                 <label
-                    htmlFor='kilometraje'
-                    className='text-gray-700 uppercase font-bold text-sm'>Kilometraje: </label>
+                    htmlFor='ciudad'
+                    className='text-gray-700 uppercase font-bold text-sm'>Ciudad: </label>
                 <input
-                    id='kilometraje'
+                    id='ciudad'
                     type="text"
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='kilometraje'
-                    name='kilometraje'
-                    value={form.kilometraje}
+                    placeholder='ciudad'
+                    name='ciudad'
+                    value={form.ciudad}
                     onChange={handleChange}
                 />
             </div>
             <div>
                 <label
-                    htmlFor='descripcion'
-                    className='text-gray-700 uppercase font-bold text-sm'>Descripción: </label>
+                    htmlFor='direccion'
+                    className='text-gray-700 uppercase font-bold text-sm'>Dirección: </label>
                 <input
-                    id='descripcion'
+                    id='direccion'
                     type="text"
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='descripcion'
-                    name='descripcion'
-                    value={form.descripcion}
+                    placeholder='direccion'
+                    name='direccion'
+                    value={form.direccion}
+                    onChange={handleChange}
+                />
+            </div>
+            <div>
+                <label
+                    htmlFor='telefono'
+                    className='text-gray-700 uppercase font-bold text-sm'>Telefono: </label>
+                <input
+                    id='telefono'
+                    type="number"
+                    className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
+                    placeholder='telefono'
+                    name='telefono'
+                    value={form.telefono}
+                    onChange={handleChange}
+                />
+            </div>
+            <div>
+                <label
+                    htmlFor='email'
+                    className='text-gray-700 uppercase font-bold text-sm'>email: </label>
+                <input
+                    id='email'
+                    type="email"
+                    className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
+                    placeholder='email'
+                    name='email'
+                    value={form.email}
                     onChange={handleChange}
                 />
             </div>
@@ -193,7 +208,7 @@ export const FormularioVh = ({vehiculo}) => {
                 className='bg-gray-600 w-full p-3 
         text-slate-300 uppercase font-bold rounded-lg 
         hover:bg-gray-900 cursor-pointer transition-all'
-        value={vehiculo?._id ? 'Actualizar vehiculo' : 'Registrar vehiculo'} />
+        value={tecnico?._id ? 'Actualizar tecnico' : 'Registrar tecnico'} />
 
         </form>
     )

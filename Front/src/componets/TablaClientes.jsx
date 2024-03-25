@@ -36,10 +36,10 @@ const TablaClientes = () => {
 
     const handleDelete = async (id) => {
         try {
-            const confirmar = confirm("Vas a registrar la salida de un paciente, ¿Estás seguro de realizar esta acción?")
+            const confirmar = confirm("Vas a eliminar un paciente, ¿Estás seguro de realizar esta acción?")
             if (confirmar) {
                 const token = localStorage.getItem('token')
-                const url = `${import.meta.env.VITE_BACKEND_URL}/cliente/eliminar/${id}`
+                const url = `${import.meta.env.VITE_BACKEND_URL}/clientes/eliminar/${id}`
                 const headers= {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${token}`
@@ -47,7 +47,7 @@ const TablaClientes = () => {
                 const data ={
                     salida:new Date().toString()
                 }
-                await axios.delete(url, {headers, data});
+                await axios.delete(url, {headers})
                 listarClientes()
             }
         }
@@ -73,6 +73,7 @@ const TablaClientes = () => {
                                 <th className='p-2'>Ciudad</th>
                                 <th className='p-2'>Email</th>
                                 <th className='p-2'>Telefono</th>
+                                <th className='p-2'>Dependencia</th>
                                 <th className='p-2'>Acciones</th>
                             </tr>
                         </thead>
@@ -87,6 +88,7 @@ const TablaClientes = () => {
                                         <td>{clientes.ciudad}</td>
                                         <td>{clientes.email}</td>
                                         <td>{clientes.telefono}</td>
+                                        <td>{clientes.dependencia}</td>
                                         
                                         <td className='py-2 text-center'>
                                             <MdNoteAdd className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2" onClick={() => navigate(`/dashboard/visualizarCliente/${clientes._id}`)} />

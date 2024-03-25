@@ -5,7 +5,7 @@ import Mensaje from '../componets/Alertas/Mensaje';
 
 const Visualizar = () => {
     const { id } = useParams()
-    const [vehiculo, setVehiculo] = useState({})
+    const [tecnico, setTecnico] = useState({})
     const [mensaje, setMensaje] = useState({})
 
     const formatearFecha = (fecha) => {
@@ -15,10 +15,10 @@ const Visualizar = () => {
     }
 
     useEffect(() => {
-        const consultarVehiculo = async () => {
+        const consultarTecnico = async () => {
             try {
                 const token = localStorage.getItem('token')
-                const url = `${import.meta.env.VITE_BACKEND_URL}/vehiculos/${id}`
+                const url = `${import.meta.env.VITE_BACKEND_URL}/tecnicos/${id}`
                 const options = {
                     headers: {
                         'Content-Type': 'application/json',
@@ -26,67 +26,69 @@ const Visualizar = () => {
                     }
                 }
                 const respuesta = await axios.get(url, options)
-                setVehiculo(respuesta.data)
+                setTecnico(respuesta.data)
             } catch (error) {
                 setMensaje({ respuesta: error.response.data.msg, tipo: false })
             }
         }
-        consultarVehiculo()
+        consultarTecnico()
     }, [])
 
     return (
         <>
             <div>
-                <h1 className='font-black text-4xl text-gray-500'>Visualizar vehiculo</h1>
+                <h1 className='font-black text-4xl text-gray-500'>Visualizar tecnico</h1>
                 <hr className='my-4' />
-                <p className='mb-8'>Este submódulo permite visualizar los datos del vehiculo</p>
+                <p className='mb-8'>Este submódulo permite visualizar los datos del tecnico</p>
             </div>
             <div>
                 {
-                    Object.keys(vehiculo).length != 0 ?
+                    Object.keys(tecnico).length != 0 ?
                         (
                             <>
                             <div className='m-5 flex justify-between'>
                                 <div>
                                     <p className="text-md text-gray-00 mt-4">
-                                        <span className="text-gray-600 uppercase font-bold">* Marca de Vehiculo: </span>
-                                        {vehiculo.marca}
+                                        <span className="text-gray-600 uppercase font-bold">* Nombre: </span>
+                                        {tecnico.nombre}
                                     </p>
                                     <p className="text-md text-gray-00 mt-4">
-                                        <span className="text-gray-600 uppercase font-bold">* Modelo del Vehiculo: </span>
-                                        {vehiculo.modelo}
+                                        <span className="text-gray-600 uppercase font-bold">* Apellido: </span>
+                                        {tecnico.apellido}
                                     </p>
                                     <p className="text-md text-gray-00 mt-4">
-                                        <span className="text-gray-600 uppercase font-bold">* Anio de Fabricación: </span>
-                                        {vehiculo.anioFabricacion}                                       
+                                        <span className="text-gray-600 uppercase font-bold">* Cedula: </span>
+                                        {tecnico.cedula}                                       
                                     </p>
                                     <p className="text-md text-gray-00 mt-4">
-                                        <span className="text-gray-600 uppercase font-bold">* Placa: </span>
-                                        {vehiculo.placa}
+                                        <span className="text-gray-600 uppercase font-bold">* Fecha Naciemiento: </span>
+                                        {formatearFecha(tecnico.fechaNacimiento)}
                                     </p>
                                     <p className="text-md text-gray-00 mt-4">
-                                        <span className="text-gray-600 uppercase font-bold">* Color: </span>
-                                        {vehiculo.color}
+                                        <span className="text-gray-600 uppercase font-bold">* Genero: </span>
+                                        {tecnico.genero}
                                     </p>
                                     <p className="text-md text-gray-00 mt-4">
-                                        <span className="text-gray-600 uppercase font-bold">* Tipo Vehiculo: </span>
-                                        {vehiculo.tipoVehiculo}
+                                        <span className="text-gray-600 uppercase font-bold">* Ciudad: </span>
+                                        {tecnico.ciudad}
                                     </p>
                                     <p className="text-md text-gray-00 mt-4">
-                                        <span className="text-gray-600 uppercase font-bold">* Kilometraje: </span>
-                                        {vehiculo.kilometraje}
+                                        <span className="text-gray-600 uppercase font-bold">* Direccón: </span>
+                                        {tecnico.direccion}
                                     </p>
                                     <p className="text-md text-gray-00 mt-4">
-                                        <span className="text-gray-600 uppercase font-bold">* Descripción: </span>
-                                        {vehiculo.descripcion}
+                                        <span className="text-gray-600 uppercase font-bold">* Telefono: </span>
+                                        {tecnico.telefono}
+                                    </p>
+                                    <p className="text-md text-gray-00 mt-4">
+                                        <span className="text-gray-600 uppercase font-bold">* Email: </span>
+                                        {tecnico.email}
                                     </p>
                                 </div>
-                                <div>
-                                    <img src="https://cdn-icons-png.flaticon.com/512/2138/2138440.png" alt="dogandcat" className='h-80 w-80' />
-                                </div>
+                                
                             </div>
                             <hr className='my-4' />
-                            <p className='mb-8'>Este submódulo te permite visualizar los tratamientos del paciente</p>
+                            
                             </>
                         )
                         :

@@ -30,11 +30,11 @@ const Dashboard = () => {
                     </li>
 
                     <li className="text-center">
-                        <Link to='/dashboard/vehiculos' className={`${urlActual === '/dashboard/vehiculos' ? 'text-slate-200 bg-gray-900 px-3 py-2 rounded-md text-center' : 'text-slate-600'} text-xl block mt-2 hover:text-slate-600`}>Vehiculos</Link>
+                        <Link to='/dashboard/tecnicos' className={`${urlActual === '/dashboard/vehiculos' ? 'text-slate-200 bg-gray-900 px-3 py-2 rounded-md text-center' : 'text-slate-600'} text-xl block mt-2 hover:text-slate-600`}>Técnicos</Link>
                     </li>
 
                     <li className="text-center">
-                        <Link to='/dashboard/reservas' className={`${urlActual === '/dashboard/reservas' ? 'text-slate-100 bg-gray-900 px-3 py-2 rounded-md text-center' : 'text-slate-600'} text-xl block mt-2 hover:text-slate-600`}>Reservas</Link>
+                        <Link to='/dashboard/reservas' className={`${urlActual === '/dashboard/reservas' ? 'text-slate-100 bg-gray-900 px-3 py-2 rounded-md text-center' : 'text-slate-600'} text-xl block mt-2 hover:text-slate-600`}>Tickets</Link>
                     </li>
                 </ul>
 
