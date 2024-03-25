@@ -14,7 +14,7 @@ const tiketsSchema = new Schema({
     },
     idCliente:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'clientes'
+        ref:'cliente'
     },
     idtecnico:{
         type:mongoose.Schema.Types.ObjectId,

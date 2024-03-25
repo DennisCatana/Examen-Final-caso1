@@ -31,12 +31,8 @@ const login = async(req,res)=>{
 
 
 // Método para mostrar el perfil 
-const perfil =(req,res)=>{
-    delete req.usuarioBDD.token
-    delete req.usuarioBDD.createdAt
-    delete req.usuarioBDD.updatedAt
-    delete req.usuarioBDD.__v
-    res.status(200).json(req.usuarioBDD)
+const perfil=(req,res)=>{ 
+    res.status(200).json(req.usuarioBD)
 }
 
 // Exportar cada uno de los métodos
