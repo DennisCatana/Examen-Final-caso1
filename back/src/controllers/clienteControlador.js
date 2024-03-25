@@ -5,9 +5,8 @@ import mongoose from "mongoose"
 const listarCliente = async(req,res)=>{
     const Cliente = await clientes.find().select("-createdAt -updatedAt -__v")
     res.status(200).json(Cliente)
-
-    
 }
+
 const detalleCliente = async(req,res)=>{
     const {id} = req.params
     if( !mongoose.Types.ObjectId.isValid(id) ) return res.status(404).json({msg:`Lo sentimos, no existe el ciente ${id}`});
